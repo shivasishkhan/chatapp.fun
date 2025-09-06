@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="app-layout">
+        <nav id="icon-sidebar">
+            <div class="nav-icon-group">
+                <div class="nav-icon active" data-panel="rooms"><i class="fas fa-comments"></i></div>
+                <div class="nav-icon" data-panel="users"><i class="fas fa-users"></i></div>
+            </div>
+            <div class="nav-icon-group">
+                <div class="nav-icon" id="theme-switcher"><i class="fas fa-sun"></i></div>
+                <div class="nav-icon" id="settings-button"><i class="fas fa-cog"></i></div>
+                <div class="nav-icon" id="logout-button"><i class="fas fa-sign-out-alt"></i></div>
+            </div>
+        </nav>
+        <div id="panel-sidebar">
+            <div class="panel active" id="rooms-panel">
+                <h3>Rooms</h3>
+                <ul id="room-list">
+                    <li class="room-item active-room" data-id="#general">#general</li>
+                    <li class="room-item" data-id="#gaming">#gaming</li>
+                    <li class="room-item" data-id="#music">#music</li>
+                </ul>
+            </div>
+            <div class="panel" id="users-panel">
+                <h3>User Directory</h3>
+                <ul id="user-list"></ul>
+            </div>
+            <div id="user-profile"></div>
+        </div>
+        <div class="chat-container">
+            <div class="chat-header"><h2 id="current-room-title">#general</h2></div>
+            <ul id="messages"></ul>
+            <div id="form-container">
+                <form id="form" action="">
+                    <input id="input" autocomplete="off" placeholder="Message #general..." />
+                    <button type="submit" id="send-button"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2>Settings</h2>
+            <form id="settings-form">
+                <h3>Profile</h3>
+                <label for="pfp-url">Profile Picture URL</label>
+                <input type="text" id="pfp-url" placeholder="https://your-image-url.com/avatar.png">
+                <label for="status-text">Status</label>
+                <input type="text" id="status-text" placeholder="Available" maxlength="50">
+                <hr>
+                <h3>Chat Background</h3>
+                <label for="bg-url">Custom Background URL</label>
+                <input type="text" id="bg-url" placeholder="Enter image URL or 'default' to remove">
+                <div class="modal-buttons">
+                    <button type="button" id="cancel-settings">Cancel</button>
+                    <button type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+</body>
+</html>
